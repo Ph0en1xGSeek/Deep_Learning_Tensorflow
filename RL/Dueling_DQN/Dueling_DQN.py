@@ -70,6 +70,7 @@ class DuelingDQN:
                     self.A = tf.matmul(l1, w2) + b2
                 
                 with tf.variable_scope('Q'):
+                    # constrain sum of A to 0 and make V more effective
                     out = self.V + (self.A - tf.reduce_mean(self.A, axis=1, keep_dims=True))
             else:
                 with tf.variable_scope('Q'):
